@@ -1,0 +1,287 @@
+
+$dark-color: #18151a;
+$primary-color: #d1f3fe;
+$white: #eee;
+
+*{
+    box-sizing: border-box;
+}
+html,
+body,
+#app,
+#body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: $dark-color;
+    color: $white;
+}
+a{text-decoration: none;}
+
+
+#body{
+    padding: 20px;
+    //font-family: 'DMMono', sans-serif;
+    //font-family: 'Azeret', sans-serif;
+    font-family: 'cabin', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    //background: $dark-color;
+    //color: $white;
+}
+
+.tile,
+.button {
+    font-size: 2.8rem;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .tile,
+    .button {
+        font-size: 3rem;
+    }
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    //grid-gap: 20px;
+    grid-auto-rows: minmax(5rem, auto);
+    //padding: 10px;
+
+}
+
+.grid{
+    grid-column: 2 span;
+    grid-row: auto;
+    &-1 {
+        grid-column: 1;
+        grid-row: 4 span;
+    }
+    &-2{
+        grid-column: 2;
+        grid-row: 2 span;
+    }
+    &-3{
+        grid-column: 2;
+        grid-row: 2 span;
+    }
+}
+@media (min-width: 960px){
+    .wrapper {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .grid {
+        grid-column: 1 span;
+        grid-row: auto;
+        &-1 {
+            grid-column: 1;
+            grid-row: 4 span;
+        }
+        &-2 {
+            grid-column: 2;
+            grid-row: 2 span;
+        }
+        &-3 {
+            grid-column: 2 span;
+            grid-row: 2 span;
+        }
+        /* 
+        &-4 {
+            grid-column: 2 span;
+            grid-row: span;
+        }
+        */
+    }
+}
+
+
+
+.tile{
+    box-sizing: border-box;
+    //border: 4px solid red;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    
+    border-radius: 30px;
+    //display:block;
+    
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-flow: column wrap;
+    //font-size: 3.2rem;
+    
+    color: $dark-color;
+    
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+
+    cursor: pointer;
+    
+    .tile-contents{
+        //padding: 20px;
+        padding: 20px;
+        margin: -20px;
+        flex: 3;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    .controls{
+        //cursor: default;
+        flex: 2;
+        line-height: 0;
+        text-align: right;
+        align-self: flex-end;
+    }
+}
+.button{
+    height:1.6em;
+    width:1.6em;
+    line-height: 1;
+    background: transparent;
+    color: $dark-color;
+    border: 2px solid currentColor;
+    border-radius: .4em;
+    //border-radius: .8rem;
+    margin: .1em;
+
+    position: relative;
+    cursor: pointer;
+    //1z-index: 1;
+
+    //font-size: 2rem;
+    font-size: 26px;
+
+    &-alt{
+        background-color: $dark-color;
+        border: currentColor;
+    }
+
+    &:active:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: transparentize($dark-color, 0.5);
+    }
+}
+.input{
+    color: $dark-color;
+    background: transparent;
+    font-size: 1em;
+    //font-size: 3.2rem;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    font-family: 'cabin', sans-serif;
+    margin: -0.5rem 0rem;
+    
+    &:focus,
+    &:hover,
+    &:visited,
+    &:focus-visible,
+    &:focus-within,
+    &:active{
+        border: 0 none;
+        outline: 0;
+    }
+}
+#timer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    //    margin: 20px;
+    padding: 20px;
+    background-color: $dark-color;
+
+    user-select: none;
+}
+.frame{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 30px;
+    border: 2px solid;
+    position:relative;
+    overflow: hidden;
+    background: $dark-color;
+    z-index: 1;
+
+    .bar{
+        position: absolute;
+        bottom:0;
+        left: 0;
+        right: 0;
+        background: $primary-color;
+        border-radius: 26px;
+        transition: all 1s linear 0s;
+
+        //overflow: hidden;
+        clip: rect(0, auto, auto, 0);
+    }
+    .info{
+        position: absolute;
+        z-index: 10;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        color: red;
+        text-align: right;
+    }
+    .title{
+        text-align: center;
+        font-size: 30vw;
+        font-weight: normal;
+        position: relative;
+        z-index: 1;
+        color: $dark-color;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        justify-content: center;
+        align-items: center;
+        display: flex;
+
+        letter-spacing: -0.03em;
+
+        //-webkit-text-stroke: 2px $dark-color;
+        @media (orientation:landscape) {
+            font-size: 30vh;
+        }
+        &-back{
+            color: red;
+            z-index: 0;
+        }
+    }
+}
+
+.number{
+    position: absolute;
+}
+
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
