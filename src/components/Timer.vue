@@ -1,6 +1,7 @@
 <template>
   <div id="timer">
-    <div class="frame" :style="`border-color: ${color}`">
+    <div class="frame" :class="{ 'finish-time' : (timer <= time.counter) }" :style="`border-color: ${color}`">
+      
       <!-- <h2 class="title" :style="`clip-path:inset(${time.progress}% 0 0 0);`"><span>{{time.formatted}}</span></h2> -->
       <div class="info">
         <!-- <div>
@@ -43,6 +44,7 @@ import { getNotification } from '@/composables/getNotifications'
 const {notifyMe, permission} = getNotification()
 
 
+
 const props = defineProps({
   timer: {
     type: Number,
@@ -56,6 +58,7 @@ const props = defineProps({
 
 const timerStore = useTimerStore();
 const { thisTime } = storeToRefs(timerStore);
+const alarmTimer  = () => timerStore.alarmTimer();
 
 const time = reactive({
   counter: 0,
@@ -79,7 +82,7 @@ const { isSupported, show, onClick, onClose } = useWebNotification({
 const notifyTime = () =>{ useWebNotification({
   title: 'Time is up',
   dir: 'auto',
-  lang: 'es',
+  lang: 'en',
   renotify: true,
   tag: 'PNApp',
   icon: './img/icons/favicon-32x32.png',
@@ -91,6 +94,7 @@ const { pause, resume, isActive } = useIntervalFn(() => {
   if (time.counter >= props.timer) {
     pause();
     setTimeout(() => {
+      alarmTimer();
       if (permission) {
         notifyTime();
       }
@@ -99,9 +103,13 @@ const { pause, resume, isActive } = useIntervalFn(() => {
   time.countDown--;
 }, 1000);
 
+/* 
 const exit = () => {
   thisTime.value = null;
 };
+*/
+
+const exit = () => timerStore.exit();
 
 const onClose = () => {
   //console.log('close');
@@ -112,6 +120,9 @@ const onClick = () => {
   //console.log('click');
   thisTime.value = null;
 };
+
+const finishClass = (timer) => {(timer <= time.counter) ? 'finish-time' : ''}
+
 </script>
 
 <style scoped>

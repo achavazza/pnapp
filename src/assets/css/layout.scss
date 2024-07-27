@@ -46,7 +46,46 @@ a{text-decoration: none;}
         font-size: 3rem;
     }
 }
+.wrapper{height: 100%; width: 100%;}
+.grid-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    //max-height: 100%;
+    //max-width: 100%;
+    gap:20px;
+    
+    justify-content: stretch;
+    align-content: stretch;
+}
+.grid {
+    //width:400px;
+    //height:400px;
+    
+    //flex-grow: 1;
+    //flex-shrink: 1;
+    //flex-basis:10%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 50%;
+    &-0 {
+        flex: 1 4 25%;
+    }
+    &-1 {
+        flex: 1 3 25%;
+    }
+    &-2 {
+        flex: 1 2 25%;
+    }
+    &-3 {
+        flex: 1 2 25%;
+    }
 
+    &:last-of-type {
+        flex:0;
+    }
+    
+}
+/*
 .grid-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -91,16 +130,16 @@ a{text-decoration: none;}
             grid-column: 2 span;
             grid-row: 2 span;
         }
-        /* 
+         
         &-3 {
             grid-column: 2 span;
             grid-row: span;
         }
-        */
+        
     }
 }
 
-
+*/
 
 .tile{
     box-sizing: border-box;
@@ -120,6 +159,7 @@ a{text-decoration: none;}
     //font-size: 3.2rem;
     
     color: $dark-color;
+    position: relative;
     
     display: flex;
     justify-content: space-between;
@@ -270,6 +310,7 @@ a{text-decoration: none;}
 
         letter-spacing: -0.03em;
 
+
         //-webkit-text-stroke: 2px $dark-color;
         @media (orientation:landscape) {
             font-size: 30vh;
@@ -278,6 +319,22 @@ a{text-decoration: none;}
             color: red;
             z-index: 0;
         }
+    }
+    &.finish-time:after{
+        content: '';
+        position: absolute;
+        height: 0vw;
+        width: 0vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 100%;
+        border: 500px solid $dark-color;
+        transform-origin: center;
+        animation-name: ringpulse;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
     }
 }
 
@@ -294,4 +351,19 @@ a{text-decoration: none;}
 .v-enter-from,
 .v-leave-to {
     opacity: 0;
+}
+
+
+/* The animation code */
+@keyframes ringpulse {
+    from {
+        opacity: 0;
+        height: 0vw;
+        width: 0vw;
+    }
+    to {
+        opacity: 1;
+        height: 110vw;
+        width: 110vw;
+    }
 }

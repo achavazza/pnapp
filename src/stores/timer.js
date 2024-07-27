@@ -6,6 +6,7 @@ import pop1 from '@/assets/sounds/multi-pop-1-188165.mp3';
 import pop2 from '@/assets/sounds/infographic-pop-3-197869.mp3';
 import pop3 from '@/assets/sounds/pop-sound-effect-197846.mp3';
 import pop4 from '@/assets/sounds/bloop-1-184019.mp3';
+import alarm from '@/assets/sounds/ringtone-126505.mp3';
 
 
 export const useTimerStore = defineStore('timer', () => {
@@ -26,7 +27,8 @@ export const useTimerStore = defineStore('timer', () => {
     const { play: popAdd    } = useSound(pop2, { interrupt: true });
     const { play: popClick  } = useSound(pop3, {volume, interrupt: true});
     const { play: popTimer  } = useSound(pop4, { interrupt: true });
-
+    const { play: alarmTimer, stop: alarmStop } = useSound(alarm, { interrupt: true, loop: true });
+    
     const setTimer = (id) => {
         const timer = state.timers.find(timer => timer.id === id);
         if (timer) {
@@ -61,6 +63,11 @@ export const useTimerStore = defineStore('timer', () => {
             popClick();
         }
     };
+    
+    const exit = () => {
+        state.thisTime = null;
+        alarmStop();
+    };
 
     return {
         ...toRefs(state),
@@ -70,5 +77,7 @@ export const useTimerStore = defineStore('timer', () => {
         setNewTimer,
         incrementTimer,
         decrementTimer,
+        exit,
+        alarmTimer
     };
 });
