@@ -12,7 +12,9 @@ import alarm from '@/assets/sounds/ringtone-126505.mp3';
 export const useTimerStore = defineStore('timer', () => {
     const state = reactive({
         timers: [
+            { id: uuidv4(), duration: 2400 },
             { id: uuidv4(), duration: 1800 },
+            { id: uuidv4(), duration: 1500 },
             { id: uuidv4(), duration: 1200 },
             { id: uuidv4(), duration: 900 },
             { id: uuidv4(), duration: 5 },

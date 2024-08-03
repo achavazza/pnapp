@@ -12,9 +12,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png', 'sounds/*.mp3', 'fonts/*.woff2', 'fonts/*.ttf'],
       manifest: {
-        name: 'PN App',
-        short_name: 'PNApp',
-        description: 'My Progressive Web App using Vite',
+        name: 'PowerNApp',
+        short_name: 'PowerNApp',
+        description: 'A Short time timer',
         theme_color: '#000000',
         icons: [
           {

@@ -12,7 +12,7 @@ const thisTime  = computed(() => timerStore.thisTime);
 const thisColor = computed(() => timerStore.thisColor);
 const newTimer  = computed(() => timerStore.newTimer);
 
-const formatter = ref('m:ss');
+const formatter = ref('mm:ss');
 const formatted = (i) => useDateFormat(i * 1000, formatter);
 const newFormat = computed(() => useDateFormat(timerStore.newTimer * 1000, formatter).value);
 
