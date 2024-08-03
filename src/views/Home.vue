@@ -76,12 +76,12 @@ const isNumber = (evt) => {
                     </div>
                 </li>
             </TransitionGroup>
-            <li :class="`grid grid-${timers.length+1}`">
-                <div class="tile"  :style="`background:${colors[bgcolor = timers.length % colors.length]}`" :key="timers.length+1">
+            <li :class="`grid grid-${timers.length}`">
+                <div class="tile"  :style="`background:${colors[bgcolor = timers.length % colors.length]}`" :key="timers.length">
                     <div class="tile-contents">
                         <input class="input" type="text" :value="val" @blur="focusOut($event)" @focus="focusIn($event)" />
                     </div>
-                    <div class="tile-contents controls">
+                    <div class="tile-contents controls controls-add">
                         <button class="button" :disabled="(val == '0:00' ? true : null)" @click="addTimer(newTimer)">
                             <span class="material-symbols-outlined"> add </span>
                         </button>
@@ -102,119 +102,5 @@ const isNumber = (evt) => {
 </template>
 
 <style>
-.grid{
-    position: relative;
-    border-radius:30px;
-}
-.grid:before,
-.grid:after{
-    content: '';
-    position: absolute;
-    background: white;
-    width:10px;
-    height: 10px;
-    border-radius: 50%;
-    z-index: 1;
-    /*
-    top:50%;
-    left:50%;
-    transform: translate(0,0) scale(1);
-    */
-    transform: scale(10);
-    transition: all 200ms ease-out;
-    opacity: 0;
-}
-.grid:before{
-    top:50%;
-    left:50%;
-}
-.grid:after{
-    right:50%;
-    bottom:50%;
-}
-.list-enter-active,
-.list-leave-active,
-.list-enter-active .tile,
-.list-leave-active .tile {
-    transition: all 200ms ease-out;
-}
-/*
-.list-leave-active .tile{
-    transition: all 200ms ease-in-out;
-	height:0%;
-	width:0%;
-}*/
-.list-enter .tile,
-.list-enter-to .tile,
-.list-leave-from .tile {
-	opacity: 1;
-    transform: scale(0.95);
-}
-.list-leave-active{
-    border:2px solid rgba(255,255,255,1);
-    
-}
-.list-leave-from{
-    border-color: rgba(255,255,255,0);
-}
-.list-enter-from .tile,
-.list-leave-to  .tile{
-    opacity: 0;
-    transform: scale(1.01);
-}
 
-.list-leave-active:before{
-    /*transform: translate(-50px,-10px) scale(0.75);*/
-    top:20%;
-    left:30%;
-    opacity: 1;
-    transform: scale(5);
-}
-.list-leave-active:after{
-    /*transform: translate(50px,10px) scale(1.5);*/
-    bottom:20%;
-    right:30%;
-    transform: scale(2);
-    opacity: 1;
-}
-.list-leave-from:before,
-.list-leave-to:before{
-    opacity: 1;
-}
-
-/* 
-&:before {
-    content: '';
-    position: absolute;
-    background: white;
-    width:10px;
-    height: 10px;
-    top: 35%;
-    left: 45%;
-    border-radius: 50%;
-}
-&:after {
-    content: '';
-    position: absolute;
-    background: white;
-    width: 5px;
-    height: 5px;
-    bottom: 35%;
-    right: 45%;
-    border-radius: 50%;
-}
-*/
-
-
-.pop-enter-active,
-.pop-leave-active {
-    transition: all 200ms ease-in-out;
-    transform: scale(1);
-}
-
-.pop-enter-from,
-.pop-leave-to {
-    opacity: 0;
-    transform: scale(1.05);
-}
 </style>

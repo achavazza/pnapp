@@ -1,0 +1,124 @@
+.grid {
+    position: relative;
+    border-radius: 30px;
+}
+
+.grid:before,
+.grid:after {
+    content: '';
+    position: absolute;
+    background: $white;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 0;
+    /*
+    top:50%;
+    left:50%;
+    transform: translate(0,0) scale(1);
+    */
+    transform: scale(10);
+    transition: all 200ms ease-out;
+    opacity: 0;
+}
+
+.tile{
+    z-index: 1;
+}
+#timer{
+    z-index: 2;
+}
+.grid:before {
+    top: 50%;
+    left: 50%;
+}
+.grid:after {
+    right: 50%;
+    bottom: 50%;
+}
+
+.list-enter-active,
+.list-leave-active,
+.list-enter-active .tile,
+.list-leave-active .tile {
+    transition: all 200ms ease-out;
+}
+
+.list-leave-active {
+    box-shadow: inset 0 0 0 5px transparentize($white, 0);   
+}
+.list-leave-from {
+    box-shadow: inset 0 0 0 0px transparentize($white, 1);
+}
+
+.list-leave-active:before {
+    /*transform: translate(-50px,-10px) scale(0.75);*/
+    top: 20%;
+    left: 30%;
+    opacity: 1;
+    transform: scale(5);
+}
+
+.list-leave-active:after {
+    /*transform: translate(50px,10px) scale(1.5);*/
+    bottom: 20%;
+    right: 30%;
+    transform: scale(2);
+    opacity: 1;
+}
+
+.list-leave-from:before,
+.list-leave-to:before {
+    opacity: 1;
+}
+
+.list-enter .tile,
+.list-enter-to .tile,
+.list-leave-from .tile {
+    opacity: 1;
+    transform: scale(0.95);
+}
+
+.list-enter-from .tile,
+.list-leave-to .tile {
+    opacity: 0;
+    transform: scale(1.2);
+}
+
+
+
+/* 
+&:before {
+    content: '';
+    position: absolute;
+    background: white;
+    width:10px;
+    height: 10px;
+    top: 35%;
+    left: 45%;
+    border-radius: 50%;
+}
+&:after {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 5px;
+    height: 5px;
+    bottom: 35%;
+    right: 45%;
+    border-radius: 50%;
+}
+*/
+
+
+.pop-enter-active,
+.pop-leave-active {
+    transition: all 200ms ease-in-out;
+    transform: scale(1);
+}
+
+.pop-enter-from,
+.pop-leave-to {
+    opacity: 0;
+    transform: scale(1.05);
+}
