@@ -79,7 +79,7 @@ const isNumber = (evt) => {
             <li :class="`grid grid-${timers.length}`">
                 <div class="tile"  :style="`background:${colors[bgcolor = timers.length % colors.length]}`" :key="timers.length">
                     <div class="tile-contents">
-                        <input class="input" type="text" :value="val" @blur="focusOut($event)" @focus="focusIn($event)" />
+                        <input class="input" type="text" inputmode="numeric"  :value="val" @blur="focusOut($event)" @focus="focusIn($event)" />
                     </div>
                     <div class="tile-contents controls controls-add">
                         <button class="button" :disabled="(val == '0:00' ? true : null)" @click="addTimer(newTimer)">

@@ -217,7 +217,7 @@ a{text-decoration: none;}
 .tile{
     box-sizing: border-box;
     //border: 4px solid red;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     height: 100%;
     background: #f0f0f0;
@@ -228,19 +228,24 @@ a{text-decoration: none;}
     align-content: center;
     justify-content: center;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
+    //flex-flow: column wrap;
     //font-size: 3.2rem;
     
     color: $dark-color;
     position: relative;
     
     display: flex;
-    justify-content: space-between;
-    flex-flow: row;
-
+    //justify-content: space-between;
+    //flex-flow: row;
+/*
     justify-self: center;
-    align-self: center;
+    align-self: center;*/
+    justify-content: space-between;
+    align-content: stretch;
     overflow: hidden;
+
+    gap: 5px;
 
     cursor: pointer;
     
@@ -258,8 +263,13 @@ a{text-decoration: none;}
         line-height: 0;
         text-align: right;
         align-self: flex-end;
+
+        align-self: end;
+
+        
         &-add{
-            min-width: 190px;
+            //min-width: 190px;
+            white-space: nowrap;
         }
     }
 
