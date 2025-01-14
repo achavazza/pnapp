@@ -10,6 +10,7 @@
   "dependencies": {
     "@vueuse/core": "^10.11.0",
     "@vueuse/sound": "^2.0.1",
+    "motion-v": "^0.6.2",
     "pinia": "^2.1.7",
     "register-service-worker": "^1.7.2",
     "uuid": "^10.0.0",

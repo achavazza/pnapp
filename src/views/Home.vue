@@ -1,9 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useDateFormat } from '@vueuse/core';
+import { AnimatePresence, Motion } from 'motion-v'
 
 import TimerComponent from "../components/Timer.vue";
 import { useTimerStore } from "../stores/timer";
+
 
 const timerStore = useTimerStore();
 const timers    = computed(() => timerStore.timers);
@@ -61,9 +63,16 @@ const isNumber = (evt) => {
 
 <template>
     <div class="wrapper">
-        <ul class="grid-wrapper">
-            <TransitionGroup name="list">
-                <li v-for="(timer, i) in timers" :key="timer.id" :class="`grid grid-${i}`" :data-id="timer.id">
+        <div>
+            <AnimatePresence multiple as="ul" class="grid-wrapper">
+                <Motion 
+                as="li"
+                v-for="(timer, i) in timers" :key="timer.id"
+                v-show="timer.visible" 
+                :initial="{ scale: 0 }"
+                :animate="{ scale: 0.5, scale: 1 }"
+                :ease="anticipate"
+                :exit="{ scale:1.5, scale: 0 }" :class="`grid grid-${i}`" :data-id="timer.id">
                     <div class="tile" @click.stop="setTimer(timer.id)" :style="`background-color:${colors[timers.indexOf(timer) % colors.length]}`">
                         <div class="tile-contents">
                             <span class="number">{{ formatted(timer.duration).value }}</span>
@@ -74,8 +83,8 @@ const isNumber = (evt) => {
                             </button>
                         </div>
                     </div>
-                </li>
-            </TransitionGroup>
+                
+            </Motion>
             <li :class="`grid grid-${timers.length}`">
                 <div class="tile"  :style="`background:${colors[bgcolor = timers.length % colors.length]}`" :key="timers.length">
                     <div class="tile-contents">
@@ -94,7 +103,8 @@ const isNumber = (evt) => {
                     </div>
                 </div>
             </li>
-        </ul>
+            </AnimatePresence>
+        </div>
     </div>
     <Transition name="pop">
         <TimerComponent v-if="thisTime" :timer="thisTime" :color="thisColor"/>
